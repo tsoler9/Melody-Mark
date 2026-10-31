@@ -14,8 +14,8 @@ A React port of the single-file Melody Mark storefront. Same look, same behavior
     public/images/      product photos (1.webp … 8.webp, extracted from the original file)
     src/data/products.js   catalog, categories, variations, reviews
     src/context/        CartContext (cart, promo, totals, localStorage), ToastContext
-    src/hooks.js        hash router, theme toggle, shop filters
-    src/pages/          Home, Shop, Product, About, Cart
+    src/hooks.js        hash router, shop filters
+    src/pages/          Home, Shop, Product, About, Cart, Orders, Profile
     src/components/     Header, Footer, Tabs, Qty, ProductCard, ProductImage
     src/index.css       styles carried over unchanged, plus a few additions for links/buttons
 
@@ -23,7 +23,7 @@ A React port of the single-file Melody Mark storefront. Same look, same behavior
 
 - Hash routes: `#home`, `#shop`, `#about`, `#cart`, `#product-<id>`
 - Cart persists in localStorage (`mm-cart`); promo code `MELODY10` gives 10% off; 11% tax
-- Light/dark theme follows the OS until toggled, then persists (`mm-theme`)
+- Dark theme only (matches the Figma design)
 - Search (press Enter), category tree, price range and sort filters
 
 ## Changes from the original
@@ -35,3 +35,10 @@ A React port of the single-file Melody Mark storefront. Same look, same behavior
 ## Still stubs (as in the original)
 
 Login, checkout and the workshop-booking button only show a toast. Wire them to a real backend or payment provider next.
+
+## Account screens (from the final design)
+
+- `#orders`, `#profile` routes; Preferences menu on the gear (notification switches, help, log out)
+- `src/context/AccountContext.jsx`: profile, saved addresses, orders and preferences (localStorage `mm-account`), seeded with the design's sample data
+- Checkout places an order for the selected delivery address, empties the cart and opens My orders
+- `src/i18n.js`: English UI strings for the nav, preferences, cart, orders and profile screens
