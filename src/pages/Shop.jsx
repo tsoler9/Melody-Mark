@@ -1,6 +1,7 @@
 import { useMemo } from "react";
 import ProductCard from "../components/ProductCard.jsx";
 import { GROUPS, PRODUCTS } from "../data/products.js";
+import Icon from "../components/Icon.jsx";
 
 const SORTS = [["pop", "Popularity"], ["new", "New"], ["lo", "Price: Low to High"], ["hi", "Price: High to Low"]];
 const COMPARE = {
@@ -14,9 +15,16 @@ export default function Shop({ shop }) {
   const { group, category, query, min, max, sort, open } = shop;
 
   const list = useMemo(() => {
-    const q = query.toLowerCase();
+    const q = query.toLowerCase().replace(/[^a-z0-9]+/g, " ").trim();
+    const categoryMatches = q ? PRODUCTS.filter((p) => p.category.toLowerCase().startsWith(q)) : [];
     let l = q
-      ? PRODUCTS.filter((p) => (p.name + p.brand + p.category).toLowerCase().includes(q))
+      ? categoryMatches.length
+        ? categoryMatches
+        : PRODUCTS.filter((p) =>
+          `${p.name} ${p.brand} ${p.category}`
+            .toLowerCase()
+            .replace(/[^a-z0-9]+/g, " ")
+            .includes(q))
       : PRODUCTS.filter((p) => p.group === group && (!category || p.category === category));
     if (min !== "") l = l.filter((p) => p.price >= +min);
     if (max !== "") l = l.filter((p) => p.price <= +max);
@@ -43,7 +51,7 @@ export default function Shop({ shop }) {
         </div>
 
         <div className="box">
-          <h5>Filter 🔍</h5>
+          <h5><Icon name="filter" size={18} /> Filter</h5>
           <small>Price Range</small>
           <p>
             <input type="number" min="0" placeholder="3,000" aria-label="Minimum price" value={min} onChange={(e) => shop.setMin(e.target.value)} />

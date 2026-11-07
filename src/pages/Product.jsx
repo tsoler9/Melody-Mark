@@ -6,7 +6,8 @@ import { GENERIC_DESCRIPTION, VARIATIONS, getProduct } from "../data/products.js
 import { useCart } from "../context/CartContext.jsx";
 import { useToast } from "../context/ToastContext.jsx";
 import { navigate } from "../hooks.js";
-import { peso, stars } from "../utils.js";
+import { peso } from "../utils.js";
+import Icon from "../components/Icon.jsx";
 
 // Rendered with key={id} so quantity, variation and tabs reset per product.
 export default function Product({ id }) {
@@ -41,7 +42,7 @@ export default function Product({ id }) {
 
       <div>
         <h1>{p.name}</h1>
-        <div className="st"><b>{p.rating.toFixed(1)}</b> {stars(p.rating)} <span className="mut">{p.reviews} rating</span></div>
+        <div className="st"><b>{p.rating.toFixed(1)}</b> {[0, 1, 2, 3, 4].map((i) => <Icon key={i} name="star" className={i < p.rating ? "filled" : "empty"} />)} <span className="mut">{p.reviews} rating</span></div>
         <div className="price">{peso(p.price)}</div>
         <small className="ok">In stock</small>
 
@@ -56,7 +57,7 @@ export default function Product({ id }) {
 
         <p>
           <button className="btn" onClick={() => addToCart(true)}>Buy Now!</button>{" "}
-          <button className="btn o" onClick={() => addToCart(false)}>🛒 Add to cart</button>
+          <button className="btn o" onClick={() => addToCart(false)}><Icon name="cart" size={17} /> Add to cart</button>
         </p>
 
         <Tabs tabs={[["d", "Description"], ["s", "Specification"]]} active={tab} onChange={setTab} />

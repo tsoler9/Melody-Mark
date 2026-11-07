@@ -24,7 +24,7 @@ export default function App() {
       <AccountProvider>
         <CartProvider>
           <Header route={route} query={shop.query} onSearch={shop.search} />
-          <main>
+          <main key={`${route.name}-${route.id ?? ""}`} className="page-transition">
             {route.name === "home" && <Home />}
             {route.name === "shop" && <Shop shop={shop} />}
             {route.name === "product" && <Product key={route.id} id={route.id} />}

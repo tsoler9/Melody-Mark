@@ -5,6 +5,7 @@ import ProductImage from "../components/ProductImage.jsx";
 import { PRODUCTS, REVIEWS, getProduct } from "../data/products.js";
 import { useToast } from "../context/ToastContext.jsx";
 import { navigate } from "../hooks.js";
+import Icon from "../components/Icon.jsx";
 
 const BEST_TABS = [["Guitar", "Guitar"], ["Piano", "Piano"], ["Drums", "Drums"], ["Violin", "Violin"]];
 const SPECIAL_TABS = [["pop", "Popular"], ["hot", "Hot Deals"], ["new", "New Arrival"], ["feat", "Featured"]];
@@ -49,7 +50,7 @@ export default function Home() {
         <h2 style={{ textAlign: "center" }}>WHAT OUR CUSTOMER SAY:</h2>
         <div className="rv">
           {REVIEWS.map(([name, text]) => (
-            <div key={name}><b>👤 {name}</b><div className="st">★★★★★</div>“{text}”</div>
+            <div key={name}><b><Icon name="user" size={18} /> {name}</b><div className="st">{[0, 1, 2, 3, 4].map((i) => <Icon key={i} name="star" className="filled" />)}</div>“{text}”</div>
           ))}
         </div>
         <div className="cta">

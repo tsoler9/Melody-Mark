@@ -1,12 +1,13 @@
 import { useToast } from "../context/ToastContext.jsx";
 import { navigate } from "../hooks.js";
+import Icon from "../components/Icon.jsx";
 
 const STATS = [["12", "Years in business"], ["8,400+", "Instruments delivered"], ["4.8/5", "Average customer rating"], ["32", "Partner brands"]];
 const VALUES = [
-  ["🔧", "Built to last", "Every instrument is inspected, set up and play-tested in our workshop before it ships. No exceptions, no surprises in the box."],
-  ["🛡️", "Made to perform", "We only stock gear we would take on stage ourselves. If it does not hold tune or hold up on tour, it does not make the shelf."],
-  ["💬", "Honest guidance", "We would rather sell you the right instrument than the expensive one. Our team plays daily and gives advice, not a sales pitch."],
-  ["🤝", "Care after the sale", "Free first setup, lifetime restringing and a repair bench that stays open long after your warranty ends."],
+  ["wrench", "Built to last", "Every instrument is inspected, set up and play-tested in our workshop before it ships. No exceptions, no surprises in the box."],
+  ["shield", "Made to perform", "We only stock gear we would take on stage ourselves. If it does not hold tune or hold up on tour, it does not make the shelf."],
+  ["message", "Honest guidance", "We would rather sell you the right instrument than the expensive one. Our team plays daily and gives advice, not a sales pitch."],
+  ["heart", "Care after the sale", "Free first setup, lifetime restringing and a repair bench that stays open long after your warranty ends."],
 ];
 const TIMELINE = [
   ["2014", "A repair bench in a garage", "Melody Mark started as a one-person guitar repair bench, fixing instruments for local bands between gigs."],
@@ -27,7 +28,7 @@ export default function About() {
           <button className="btn" onClick={() => navigate("shop")}>Browse the shop</button>{" "}
           <button className="btn o" onClick={() => toast("Workshop bookings open soon")}>Visit our workshop</button>
         </div>
-        <div className="pic" style={{ "--h": 240 }}>🎹</div>
+        <div className="pic" style={{ "--h": 240 }}><Icon name="piano" size={96} className="art-icon" /></div>
       </div>
 
       <div className="stats">
@@ -37,7 +38,7 @@ export default function About() {
       <h2>What we stand for</h2>
       <div className="vals">
         {VALUES.map(([icon, title, text]) => (
-          <div key={title}><b>{icon} {title}</b><p className="mut">{text}</p></div>
+        <div key={title}><b><Icon name={icon} size={22} /> {title}</b><p className="mut">{text}</p></div>
         ))}
       </div>
 
@@ -49,11 +50,18 @@ export default function About() {
       </div>
 
       <div className="story" style={{ marginTop: 30 }}>
-        <div className="pic" style={{ "--h": 30 }}>🎸🥁</div>
+        <div className="pic instrument-pair" style={{ "--h": 30 }}>
+          <Icon name="guitar" size={72} className="art-icon" />
+          <Icon name="drums" size={72} className="art-icon" />
+        </div>
         <div>
           <h2>Come play in person</h2>
           <p>Our shop floor is open seven days a week. Bring your own gear for a free health check, or book a slot at the workshop bench.</p>
-          <p className="mut">📍 Jl. Melodi Raya No. 21, Jakarta Selatan<br />📞 +62 21 5550 1984<br />✉️ hello@melodymark.com</p>
+          <div className="contact-list mut">
+            <p><Icon name="pin" /> Jl. Melodi Raya No. 21, Jakarta Selatan</p>
+            <p><Icon name="phone" /> +62 21 5550 1984</p>
+            <p><Icon name="mail" /> hello@melodymark.com</p>
+          </div>
           <button className="btn" onClick={() => navigate("shop")}>Shop instruments</button>
         </div>
       </div>

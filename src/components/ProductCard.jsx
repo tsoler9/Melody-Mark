@@ -1,5 +1,6 @@
-import { peso, stars } from "../utils.js";
+import { peso } from "../utils.js";
 import ProductImage from "./ProductImage.jsx";
+import Icon from "./Icon.jsx";
 
 export default function ProductCard({ product: p }) {
   return (
@@ -8,7 +9,7 @@ export default function ProductCard({ product: p }) {
       <h4>{p.name}</h4>
       <b className="pr">{peso(p.price)}</b>
       <small className="ok">In Stock</small>
-      <div className="st">{stars(p.rating)}</div>
+      <div className="st">{[0, 1, 2, 3, 4].map((i) => <Icon key={i} name="star" className={i < p.rating ? "filled" : "empty"} />)}</div>
     </a>
   );
 }

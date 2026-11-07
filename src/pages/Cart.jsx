@@ -8,6 +8,7 @@ import { useAccount } from "../context/AccountContext.jsx";
 import { useToast } from "../context/ToastContext.jsx";
 import { navigate } from "../hooks.js";
 import { peso } from "../utils.js";
+import Icon from "../components/Icon.jsx";
 
 export default function Cart() {
   const cart = useCart();
@@ -59,7 +60,7 @@ export default function Cart() {
                   <div><Qty value={x.qty} onChange={(d) => cart.changeQty(x.key, d)} /></div>
                 </div>
                 <b className="pr">{peso(p.price * x.qty)}</b>
-                <button className="x" aria-label="Remove" onClick={() => cart.remove(x.key)}>🗑</button>
+                <button className="x" aria-label="Remove" onClick={() => cart.remove(x.key)}><Icon name="trash" size={16} /></button>
               </div>
             );
           })}
@@ -93,8 +94,11 @@ export default function Cart() {
           <p><span className="mut">Tax (11%)</span><span>{peso(cart.tax)}</span></p>
           <hr style={{ borderColor: "var(--line)" }} />
           <p><b>Total</b><b className="pr" style={{ fontSize: "1.3rem" }}>{peso(cart.total)}</b></p>
-          <button className="btn" style={{ width: "100%" }} onClick={checkout}>🔒 {t("checkout")}</button>
-          <p className="mut"><small>✔ Free setup and 30-day returns<br />🚚 Insured shipping, packed by our workshop</small></p>
+          <button className="btn" style={{ width: "100%" }} onClick={checkout}><Icon name="lock" size={17} /> {t("checkout")}</button>
+          <div className="mut service-notes">
+            <small><Icon name="check" size={15} /> Free setup and 30-day returns</small>
+            <small><Icon name="truck" size={15} /> Insured shipping, packed by our workshop</small>
+          </div>
           {addr && <p className="mut"><small>{t("deliveringTo")} <b>{addr.name}</b></small></p>}
         </div>
         </div>
