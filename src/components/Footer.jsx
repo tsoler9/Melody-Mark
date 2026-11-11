@@ -3,7 +3,7 @@ import Icon from "./Icon.jsx";
 export default function Footer() {
   return (
     <footer>
-      <a className="logo" href="#home"><i>MM</i>Melody Mark</a>
+      <a className="logo" href="#home"><img src="/images/image.png" alt="Melody Mark logo" />Melody <span className="logo-mark">Mark</span></a>
       <div className="soc">
         Follow Us:
         <span className="social-icon facebook" role="img" aria-label="Facebook"><Icon name="facebook" /></span>

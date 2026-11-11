@@ -68,7 +68,7 @@ export default function Shop({ shop }) {
         </div>
       </aside>
 
-      <div>
+      <div className="shop-results" key={`${group}-${category || ""}`}>
         <p className="mut">{heading}</p>
         <div className="grid">
           {list.length

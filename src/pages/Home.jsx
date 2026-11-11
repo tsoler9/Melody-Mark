@@ -6,6 +6,7 @@ import { PRODUCTS, REVIEWS, getProduct } from "../data/products.js";
 import { useToast } from "../context/ToastContext.jsx";
 import { navigate } from "../hooks.js";
 import Icon from "../components/Icon.jsx";
+import ScrollReveal from "../components/ScrollReveal.jsx";
 
 const BEST_TABS = [["Guitar", "Guitar"], ["Piano", "Piano"], ["Drums", "Drums"], ["Violin", "Violin"]];
 const SPECIAL_TABS = [["pop", "Popular"], ["hot", "Hot Deals"], ["new", "New Arrival"], ["feat", "Featured"]];
@@ -20,7 +21,7 @@ export default function Home() {
 
   return (
     <>
-      <section className="hero">
+      <ScrollReveal as="section" className="hero">
         <div>
           <h1>Welcome to <b>Melody Mark</b> your reliable instrument shop</h1>
           <p>
@@ -32,21 +33,21 @@ export default function Home() {
         <div className="mos">
           {[1, 6, 5, 7].map((id) => <ProductImage key={id} product={getProduct(id)} />)}
         </div>
-      </section>
+      </ScrollReveal>
 
-      <section className="sec"><div className="wrap">
+      <ScrollReveal as="section" className="sec font-sans"><div className="wrap">
         <h2>BEST SELLER</h2>
         <Tabs tabs={BEST_TABS} active={best} onChange={setBest} />
         <div className="grid">{bestSellers.map((p) => <ProductCard key={p.id} product={p} />)}</div>
-      </div></section>
+      </div></ScrollReveal>
 
-      <section className="sec"><div className="wrap">
+      <ScrollReveal as="section" className="sec font-sans"><div className="wrap">
         <h2>SPECIALS</h2>
         <Tabs tabs={SPECIAL_TABS} active={special} onChange={setSpecial} />
         <div className="grid">{specials.map((p) => <ProductCard key={p.id} product={p} />)}</div>
-      </div></section>
+      </div></ScrollReveal>
 
-      <section className="sec"><div className="wrap">
+      <ScrollReveal as="section" className="sec font-sans"><div className="wrap">
         <h2 style={{ textAlign: "center" }}>WHAT OUR CUSTOMER SAY:</h2>
         <div className="rv">
           {REVIEWS.map(([name, text]) => (
@@ -58,7 +59,7 @@ export default function Home() {
           <button className="btn" onClick={() => navigate("shop")}>Get Started!</button>
           <button className="btn o" onClick={() => toast("Login is not connected yet")}>Login</button>
         </div>
-      </div></section>
+      </div></ScrollReveal>
     </>
   );
 }

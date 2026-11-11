@@ -89,7 +89,7 @@ export default function Header({ route, query, onSearch }) {
 
   return (
     <header>
-      <a className="logo" href="#home"><i>MM</i>Melody Mark</a>
+      <a className="logo" href="#home"><img src="/images/image.png" alt="Melody Mark logo" />Melody <span className="logo-mark">Mark</span></a>
       <nav>
         {LINKS.map((r) => (
           <a key={r} href={`#${r}`} className={route.name === r || (route.name === "product" && r === "shop") ? "on" : ""}>{t(r)}</a>
@@ -150,10 +150,10 @@ export default function Header({ route, query, onSearch }) {
           </div>
         )}
       </div>
-      <button className={"ic" + (route.name === "cart" ? " on" : "")} aria-label={t("myCart")} onClick={() => navigate("cart")}><Icon name="cart" /><em>{count}</em></button>
-      <button className={"ic" + (route.name === "profile" || route.name === "orders" ? " on" : "")} aria-label={t("myProfile")} onClick={() => navigate("profile")}><Icon name="user" /></button>
+      <button className={"ic" + (route.name === "cart" ? " on" : "")} aria-label={t("myCart")} onClick={() => navigate("cart")}><img src="/images/cart.png" alt="" /><em>{count}</em></button>
+      <button className={"ic" + (route.name === "profile" || route.name === "orders" ? " on" : "")} aria-label={t("myProfile")} onClick={() => navigate("profile")}><img src="/images/user.png" alt="" /></button>
       <div className="pw" ref={box}>
-        <button className={"ic" + (open ? " on" : "")} aria-label={t("prefs")} aria-expanded={open} onClick={() => setOpen((o) => !o)}><Icon name="settings" /></button>
+        <button className={"ic" + (open ? " on" : "")} aria-label={t("prefs")} aria-expanded={open} onClick={() => setOpen((o) => !o)}><img src="/images/settings.png" alt="" /></button>
         {open && <Prefs close={() => setOpen(false)} />}
       </div>
     </header>
