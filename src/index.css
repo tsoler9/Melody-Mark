@@ -29,11 +29,16 @@ body,
     min-height: 100%
 }
 
+html {
+    overflow-x: clip
+}
+
 body {
     margin: 0;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+    overflow-x: clip;
     background: var(--bg);
     color: var(--tx);
     font: 16px/1.5 system-ui, "Segoe UI", Roboto, sans-serif
