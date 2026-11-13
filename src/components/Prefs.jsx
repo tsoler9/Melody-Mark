@@ -9,10 +9,14 @@ const Switch = ({ on, label, onClick }) => (
 );
 
 const CONTACT_EMAIL = "solerteejaybryan@gmail.com";
-const CONTACT_PHONE = "+62 21 5550 1984";
+const CONTACT_PHONE = "(+63) 09##-####-0123";
 
 function ContactDialog({ onClose }) {
   const closeButton = useRef(null);
+  const cooldownTimer = useRef(null);
+  const cooldownRef = useRef(false);
+  const [cooldown, setCooldown] = useState(false);
+  const [notification, setNotification] = useState("");
 
   useEffect(() => {
     closeButton.current?.focus();
@@ -20,11 +24,16 @@ function ContactDialog({ onClose }) {
       if (event.key === "Escape") onClose();
     };
     addEventListener("keydown", closeOnEscape);
-    return () => removeEventListener("keydown", closeOnEscape);
+    return () => {
+      removeEventListener("keydown", closeOnEscape);
+      clearTimeout(cooldownTimer.current);
+    };
   }, [onClose]);
 
   const sendMessage = (event) => {
     event.preventDefault();
+    if (cooldownRef.current) return;
+
     const form = new FormData(event.currentTarget);
     const body = [
       `Name: ${form.get("name") || "Not provided"}`,
@@ -33,6 +42,13 @@ function ContactDialog({ onClose }) {
       form.get("message"),
     ].join("\n");
     const subject = "Melody Mark contact message";
+    cooldownRef.current = true;
+    setCooldown(true);
+    setNotification("Your email app should open with this message. Send it there to complete delivery.");
+    cooldownTimer.current = setTimeout(() => {
+      cooldownRef.current = false;
+      setCooldown(false);
+    }, 5000);
     window.location.href = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
   };
 
@@ -49,7 +65,9 @@ function ContactDialog({ onClose }) {
           <button ref={closeButton} type="button" className="contact-close" aria-label="Close contact dialog" onClick={onClose}>×</button>
         </div>
         <div className="contact-methods">
-          <a href={`tel:${CONTACT_PHONE.replace(/[^\d+]/g, "")}`}><Icon name="phone" /><span>{CONTACT_PHONE}</span></a>
+          {CONTACT_PHONE.includes("#")
+            ? <div><Icon name="phone" /><span>{CONTACT_PHONE}</span></div>
+            : <a href={`tel:${CONTACT_PHONE.replace(/[^\d+]/g, "")}`}><Icon name="phone" /><span>{CONTACT_PHONE}</span></a>}
           <a href={`mailto:${CONTACT_EMAIL}`}><Icon name="mail" /><span>{CONTACT_EMAIL}</span></a>
         </div>
         <form className="contact-form" onSubmit={sendMessage}>
@@ -57,8 +75,12 @@ function ContactDialog({ onClose }) {
           <label>Name <input name="name" autoComplete="name" /></label>
           <label>Your email <input name="email" type="email" autoComplete="email" /></label>
           <label>Message <textarea name="message" required rows="4" /></label>
-          <p className="contact-email-note">Your email app will open with your message addressed to {CONTACT_EMAIL}.</p>
-          <button className="contact-send" type="submit">Continue to email</button>
+          <p className="contact-email-note" role="status" aria-live="polite">
+            {notification || `Your email app will open with your message addressed to ${CONTACT_EMAIL}.`}
+          </p>
+          <button className="contact-send" type="submit" disabled={cooldown}>
+            {cooldown ? "Please wait..." : "Continue to email"}
+          </button>
         </form>
       </section>
     </div>

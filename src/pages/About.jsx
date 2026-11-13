@@ -28,7 +28,9 @@ export default function About() {
           <button className="btn" onClick={() => navigate("shop")}>Browse the shop</button>{" "}
           <button className="btn o" onClick={() => toast("Workshop bookings open soon")}>Visit our workshop</button>
         </div>
-        <div className="pic" style={{ "--h": 240 }}><Icon name="piano" size={96} className="art-icon" /></div>
+        <div className="pic story-photo">
+          <img src={`${import.meta.env.BASE_URL}images/Ins.png`} alt="Inside the Melody Mark instrument shop" />
+        </div>
       </div>
 
       <div className="stats">
@@ -50,16 +52,15 @@ export default function About() {
       </div>
 
       <div className="story" style={{ marginTop: 30 }}>
-        <div className="pic instrument-pair" style={{ "--h": 30 }}>
-          <Icon name="guitar" size={72} className="art-icon" />
-          <Icon name="drums" size={72} className="art-icon" />
+        <div className="pic story-photo">
+          <img src={`${import.meta.env.BASE_URL}images/Ins2.png`} alt="Instruments on display in a music shop" />
         </div>
         <div>
           <h2>Come play in person</h2>
           <p>Our shop floor is open seven days a week. Bring your own gear for a free health check, or book a slot at the workshop bench.</p>
           <div className="contact-list mut">
-            <p><Icon name="pin" /> Jl. Melodi Raya No. 21, Jakarta Selatan</p>
-            <p><Icon name="phone" /> +62 21 5550 1984</p>
+            <p><Icon name="pin" /> Olongapo City, Zambales, Philippines</p>
+            <p><Icon name="phone" /> (+63) 09##-####-0123</p>
             <p><Icon name="mail" /> hello@melodymark.com</p>
           </div>
           <button className="btn" onClick={() => navigate("shop")}>Shop instruments</button>
