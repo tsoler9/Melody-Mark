@@ -1347,7 +1347,7 @@ nav a:hover {
 }
 
 .soc .social-icon.instagram {
-    background: #c13584
+    background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285aeb 90%)
 }
 
 .soc .social-icon.x {
@@ -1355,7 +1355,7 @@ nav a:hover {
 }
 
 .soc .social-icon.youtube {
-    background: #f00
+    background: #fff
 }
 
 .soc .social-icon:hover {

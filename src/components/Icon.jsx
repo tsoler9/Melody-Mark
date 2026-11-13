@@ -22,7 +22,7 @@ const ICONS = {
   facebook: <path fill="currentColor" stroke="none" d="M13.5 21v-8h2.7l.4-3.1h-3.1v-2c0-.9.3-1.5 1.6-1.5h1.7V3.6c-.3 0-1.3-.1-2.5-.1-2.5 0-4.2 1.5-4.2 4.3v2.1H7.3V13h2.8v8h3.4Z" />,
   instagram: <><rect x="3" y="3" width="18" height="18" rx="5" /><circle cx="12" cy="12" r="4" /><circle cx="18" cy="6.5" r=".7" fill="currentColor" /></>,
   x: <path fill="currentColor" stroke="none" d="M18.9 3H22l-6.8 7.8L23.2 21h-6.3L12 14.8 6.5 21H3.3l7.3-8.4L2.8 3h6.5l4.5 5.9L18.9 3Zm-1.1 16h1.7L8.3 4.9H6.5L17.8 19Z" />,
-  youtube: <><rect x="2.5" y="5" width="19" height="14" rx="4" fill="currentColor" /><path d="m10 9 5 3-5 3V9Z" fill="#000" stroke="none" /></>,
+  youtube: <><rect x="2.5" y="5" width="19" height="14" rx="4" fill="#f00" stroke="none" /><path d="m10 9 5 3-5 3V9Z" fill="#fff" stroke="none" /></>,
 };
 
 export default function Icon({ name, size = 20, className = "" }) {
